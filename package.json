@@ -1,0 +1,59 @@
+{
+  "name": "jsx-to-scss",
+  "displayName": "jsx-to-scss",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.51.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:jsx-to-scss.extract"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jsx-to-scss.extract",
+        "title": "JSX Extract Style to Clipboard"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == javascript || resourceLangId == jsx",
+          "command": "jsx-to-scss.extract"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "jsx-to-scss.extract",
+        "key": "ctrl+e",
+        "mac": "cmd+e"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.51.0",
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^12.11.7",
+    "eslint": "^7.9.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.1.3",
+    "typescript": "^4.0.2",
+    "vscode-test": "^1.4.0"
+  },
+  "dependencies": {
+    "copy-paste": "^1.3.0",
+    "jsx-parser": "^1.0.8"
+  }
+}
