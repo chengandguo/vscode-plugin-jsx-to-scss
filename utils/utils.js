@@ -7,10 +7,9 @@ let {
 } = require("./jsxParser");
 
 
-const editor = vscode.window.activeTextEditor;
-
 // 获取当前选中的文本
 function getSelectedText() {
+  const editor = vscode.window.activeTextEditor;
   let doc = editor.document.getText();
   let arr = doc.split("\n");
   let {
@@ -33,6 +32,7 @@ function getSelectedText() {
 // 提取样式
 function extractStyle(text = "") {
   let obj = JSXParser(text);
+  console.log("obj", obj);
   if (!obj) {
     vscode.window.showErrorMessage("Please check your JSX syntax");
     return false;

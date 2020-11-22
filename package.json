@@ -2,7 +2,7 @@
   "name": "jsx-to-scss",
   "displayName": "jsx-to-scss",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -23,7 +23,7 @@
     "menus": {
       "editor/context": [
         {
-          "when": "resourceLangId == javascript || resourceLangId == jsx",
+          "when": "",
           "command": "jsx-to-scss.extract"
         }
       ]
