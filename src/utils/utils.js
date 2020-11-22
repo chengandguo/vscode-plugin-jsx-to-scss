@@ -32,14 +32,13 @@ function getSelectedText() {
 // 提取样式
 function extractStyle(text = "") {
   let obj = JSXParser(text);
-  console.log("obj", obj);
+  console.log(obj);
   if (!obj) {
     vscode.window.showErrorMessage("Please check your JSX syntax");
     return false;
   } else {
     return generateSass(obj);
   }
-
 }
 
 /*
@@ -61,6 +60,9 @@ function generateSass(obj, spaceCount = 0) {
     props,
     children
   } = obj;
+  if(!props || !children) {
+    return "";
+  }
 
   if (props.className) {
     let classNames = props.className.trim().split(" ");

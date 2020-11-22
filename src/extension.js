@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-const { getSelectedText, extractStyle, writeToClipboard} = require("./utils/utils.js");
+const { getSelectedText, extractStyle, writeToClipboard } = require("./utils/utils.js");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -19,9 +19,9 @@ function activate(context) {
   // The commandId parameter must match the command field in package.json
   let disposable = vscode.commands.registerCommand('jsx-to-scss.extract', function () {
     let text = getSelectedText();
-    if(text) {
+    if (text) {
       let scss = extractStyle(text);
-      if(scss) {
+      if (scss) {
         writeToClipboard(scss);
       } else {
         vscode.window.showErrorMessage("Fail to extract classNames");
