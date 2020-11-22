@@ -1,6 +1,5 @@
 const vscode = require('vscode');
 const copyPaste = require("copy-paste");
-const jsxParser = require('./jsxParser');
 let {
   JSXParser
 } = require("./jsxParser");
