@@ -1,14 +1,15 @@
 {
   "name": "jsx-to-scss",
   "displayName": "jsx-to-scss",
-  "description": "",
-  "version": "0.0.4",
+  "description": "Help you generate scss/less structure from jsx",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.51.0"
   },
   "categories": [
     "Other"
   ],
+  "icon": "https://img.alicdn.com/tfs/TB1CyNnnIieb18jSZFvXXaI3FXa-189-28.png",
   "activationEvents": [
     "onCommand:jsx-to-scss.extract"
   ],
@@ -23,7 +24,7 @@
     "menus": {
       "editor/context": [
         {
-          "when": "",
+          "when": "resourceLangId == javascript || resourceLangId == javascriptreact",
           "command": "jsx-to-scss.extract"
         }
       ]
