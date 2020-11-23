@@ -2,14 +2,14 @@
   "name": "jsx-to-scss",
   "displayName": "jsx-to-scss",
   "description": "Help you generate scss/less structure from jsx",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.51.0"
   },
   "categories": [
     "Other"
   ],
-  "icon": "https://img.alicdn.com/tfs/TB1CyNnnIieb18jSZFvXXaI3FXa-189-28.png",
+  "icon": "icon.png",
   "activationEvents": [
     "onCommand:jsx-to-scss.extract"
   ],
