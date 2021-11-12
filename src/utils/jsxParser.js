@@ -39,7 +39,6 @@ function parse(string, getOne) {
 }
 
 function lexer(string, getOne) {
-  var tokens = []
   var breakIndex = 120
   var stack = []
   var origString = string
@@ -129,9 +128,11 @@ function lexer(string, getOne) {
           addText(lastNode, text, addNode)
           string = string.slice(1) //去掉前面{
           var arr = parseCode(string)
-          addNode(makeJSX(arr[1]))
-          lastNode = false
-          string = string.slice(arr[0].length + 1) //去掉后面的}
+          if(Array.isArray(arr)) {
+            addNode(makeJSX(arr[1]))
+            lastNode = false
+            string = string.slice(arr[0].length + 1) //去掉后面的}
+          }
       } else {
           if (index === -1) {
               text = string

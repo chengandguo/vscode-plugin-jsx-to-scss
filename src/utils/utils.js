@@ -10,7 +10,6 @@ let {
 // 获取当前选中的文本
 function getSelectedText() {
   const editor = vscode.window.activeTextEditor;
-  console.log(editor.document);
   let doc = editor.document.getText();
   let arr = doc.split("\n");
   let {
@@ -27,12 +26,14 @@ function getSelectedText() {
       str += arr[i];
     }
   }
+  // console.log("selected text: ", str)
   return str;
 }
 
 // 提取样式
 function extractStyle(text = "") {
   let obj = JSXParser(text);
+  console.log("parse obj: ", obj)
   if (!obj) {
     vscode.window.showErrorMessage("Please check your JSX syntax");
     return false;
@@ -65,7 +66,13 @@ function generateSass(obj, spaceCount = 0) {
   }
 
   if (props.className) {
-    let classNames = props.className.trim().split(" ");
+    let classNames = "";
+    if(typeof props.className === "object" && props.className.type === "#jsx") {
+      classNames = jsxClassNameToCommon(props.className.nodeValue).split(" ");
+    } else {
+      classNames = props.className.trim().split(" ");
+    }
+
     result += generateWhiteSpace(spaceCount);
     let arr = [];
     for (let item of classNames) {
@@ -79,7 +86,7 @@ function generateSass(obj, spaceCount = 0) {
     let prefix = "";
     let count = props.className ? DEFAULT_SPACE_COUNT : 0;
     for (let [index, item] of children.entries()) {
-      prefix = (index === 0 || !item.props.className) ? "" : "\n";
+      prefix = (index === 0 || !item?.props?.className) ? "" : "\n";
       result += prefix + generateSass(item, spaceCount + count);
     }
   }
@@ -90,6 +97,32 @@ function generateSass(obj, spaceCount = 0) {
 
   return result;
 }
+
+/* 
+  @description: 转换jsx className
+  eg: classNames('set-pin-container', { 'keyboard-active': keyboardActive })
+*/
+function jsxClassNameToCommon (className) {
+  className = className.replace(/'/g, '"');
+  let result = "",
+    leftFlag = false;
+  for(let value of className) {
+    if(value === '"') {
+      if(leftFlag) {
+        leftFlag = false;
+        result += " ";
+      } else {
+        leftFlag = true;
+      }
+      continue;
+    }
+    if(leftFlag) {
+      result += value;
+    }
+  }
+  return result.trim();
+}
+
 
 // 生成指定数量的空格
 function generateWhiteSpace(cnt) {
