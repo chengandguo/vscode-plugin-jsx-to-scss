@@ -33,7 +33,6 @@ function getSelectedText() {
 // 提取样式
 function extractStyle(text = "") {
   let obj = JSXParser(text);
-  console.log("parse obj: ", obj)
   if (!obj) {
     vscode.window.showErrorMessage("Please check your JSX syntax");
     return false;

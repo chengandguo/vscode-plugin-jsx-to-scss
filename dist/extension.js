@@ -11791,8 +11791,8 @@ module.exports = {
   !*** ./src/utils/jsxParser.js ***!
   \********************************/
 /*! unknown exports (runtime-defined) */
-/*! runtime requirements:  */
-/***/ (() => {
+/*! runtime requirements: module */
+/***/ ((module) => {
 
 function oneObject(str) {
   var obj = {}
@@ -12234,7 +12234,9 @@ function makeJSX(JSXNode) {
   return JSXNode.length === 1 && JSXNode[0].type === '#jsx' ? JSXNode[0] : { type: '#jsx', nodeValue: JSXNode }
 }
 
-
+module.exports = {
+  JSXParser
+}
 
 /***/ }),
 
@@ -12244,6 +12246,7 @@ function makeJSX(JSXNode) {
   \****************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 144:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const vscode = __webpack_require__(/*! vscode */ "vscode");
@@ -12281,7 +12284,6 @@ function getSelectedText() {
 // 提取样式
 function extractStyle(text = "") {
   let obj = JSXParser(text);
-  console.log("parse obj: ", obj)
   if (!obj) {
     vscode.window.showErrorMessage("Please check your JSX syntax");
     return false;
