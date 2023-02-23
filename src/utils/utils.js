@@ -2,9 +2,7 @@ const vscode = require('vscode');
 const copyPaste = require("copy-paste");
 
 
-let {
-  JSXParser
-} = require("./jsxParser");
+const { JSXParser } = require("./jsxParser");
 
 
 // 获取当前选中的文本
@@ -105,6 +103,7 @@ function generateSass(obj, spaceCount = 0) {
   const str3 = "styles.name"
   const str4 = "`${styles.fruitList} ${styles.fruitBold}`"
   const str5 = "cx(styles.fruitList, styles.fruitBold,  'abc')"
+  const str6 = "{classNames(style.contentFooter, { [style.fullWidth]: !!footerFullWidth })}"
 */
 
 function jsxClassNameToCommon (className) {
@@ -119,7 +118,8 @@ function jsxClassNameToCommon (className) {
     ",": true,
     "}": true,
     "'": true,
-    '"': true
+    '"': true,
+    ']': true
   }
   const SPACE_CHAR = " ";
   let count = 0;
@@ -131,7 +131,7 @@ function jsxClassNameToCommon (className) {
         leftFlag = false;
         result += " ";
         count = 0;
-      } else {
+      } else if(LEFT_FLAG_MAP[value]) {
         leftFlag = true;
       }
       continue;
