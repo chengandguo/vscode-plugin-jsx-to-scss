@@ -20,6 +20,14 @@ This is a jsx-to-scss plugin which can help you extract scss from jsx template.
 </div>
 ```
 
+#### The css module is also supported
+
+```
+<div className={styles.fruitList}>
+  <div className={styles.fruitItem}></div>
+</div>
+```
+
 ##### 2.Press cmd/ctrl + e, and paste your clipboard content to your scss file.
 ```
 .container {
@@ -36,9 +44,16 @@ This is a jsx-to-scss plugin which can help you extract scss from jsx template.
 }
 ```
 
+```
+.fruitList {
+  .fruitItem {
+
+  }
+}
+```
+
 ## known issues
 - Not filter the repeated class names currently
-- An element with multiple class names
 
 ### report issues
 If you have any questions, feel free to contact me.

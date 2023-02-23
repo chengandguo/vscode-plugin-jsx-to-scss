@@ -26,7 +26,6 @@ function getSelectedText() {
       str += arr[i];
     }
   }
-  // console.log("selected text: ", str)
   return str;
 }
 
@@ -100,16 +99,38 @@ function generateSass(obj, spaceCount = 0) {
 /* 
   @description: 转换jsx className
   eg: classNames('set-pin-container', { 'keyboard-active': keyboardActive })
+  碰到' " .   => 记录模式  , } " '
+  const str1 = 'cx(styles.fruitList, "abc")';
+  const str2 = 'cx("a", "b")'
+  const str3 = "styles.name"
+  const str4 = "`${styles.fruitList} ${styles.fruitBold}`"
+  const str5 = "cx(styles.fruitList, styles.fruitBold,  'abc')"
 */
+
 function jsxClassNameToCommon (className) {
-  className = className.replace(/'/g, '"');
-  let result = "",
-    leftFlag = false;
+  let result = "";
+  let leftFlag = false;
+  const LEFT_FLAG_MAP = {
+    "'": true,
+    '"': true,
+    '.': true
+  }
+  const RIGHT_FLAG_MAP = {
+    ",": true,
+    "}": true,
+    "'": true,
+    '"': true
+  }
+  const SPACE_CHAR = " ";
+  let count = 0;
   for(let value of className) {
-    if(value === '"') {
-      if(leftFlag) {
+    if(value === SPACE_CHAR) continue;
+
+    if(LEFT_FLAG_MAP[value] || RIGHT_FLAG_MAP[value]) {
+      if(count && RIGHT_FLAG_MAP[value]) {
         leftFlag = false;
         result += " ";
+        count = 0;
       } else {
         leftFlag = true;
       }
@@ -117,9 +138,10 @@ function jsxClassNameToCommon (className) {
     }
     if(leftFlag) {
       result += value;
+      count++
     }
   }
-  return result.trim();
+  return result;
 }
 
 
