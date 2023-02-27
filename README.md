@@ -1,13 +1,13 @@
 # jsx-to-scss README
 This is a jsx-to-scss plugin which can help you extract scss from jsx template.
 
-## Features
+## Steps
 - 1.Select the JSX you want to extract class names
-- 2.Show your context Menu, and click "JSX Extract Style to Clipboard"(or use cmd/ctrl + e)
+- 2.Use Command/Ctrl + E for one click extracting.
 - 3.Paste the SCSS structure to your *.scss file.
 
-## example
-##### 1.copy the jsx element to your clipboard.
+## Here is a more specific example
+##### 1.Copy the JSX element to your clipboard.
 ```
 <div className="container">
   <h1>Video Games</h1>
@@ -20,7 +20,7 @@ This is a jsx-to-scss plugin which can help you extract scss from jsx template.
 </div>
 ```
 
-#### The css module is also supported
+#### CSS module is also supported
 
 ```
 <div className={styles.fruitList}>
@@ -28,7 +28,7 @@ This is a jsx-to-scss plugin which can help you extract scss from jsx template.
 </div>
 ```
 
-##### 2.Press cmd/ctrl + e, and paste your clipboard content to your scss file.
+##### 2.Press Command/Ctrl + E, and paste your clipboard content to your scss file.
 ```
 .container {
   .wrapper {

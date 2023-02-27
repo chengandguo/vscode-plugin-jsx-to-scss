@@ -2,7 +2,18 @@
   "name": "jsx-to-scss",
   "displayName": "jsx-to-scss",
   "description": "Help you generate scss/less structure from jsx",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "test-compile": "tsc -p ./",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "publish": "npm run build && npx vsce package && npx vsce publish"
+  },
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -36,17 +47,6 @@
         "mac": "cmd+e"
       }
     ]
-  },
-  "scripts": {
-    "build": "webpack --mode production",
-    "webpack": "webpack --mode development",
-    "dev": "webpack --mode development --watch",
-    "start": "webpack --mode development --watch",
-    "test-compile": "tsc -p ./",
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "node ./test/runTest.js",
-    "publish": "npm run build && npx vsce package && npx vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

@@ -104,6 +104,7 @@ function generateSass(obj, spaceCount = 0) {
   const str4 = "`${styles.fruitList} ${styles.fruitBold}`"
   const str5 = "cx(styles.fruitList, styles.fruitBold,  'abc')"
   const str6 = "{classNames(style.contentFooter, { [style.fullWidth]: !!footerFullWidth })}"
+  const str7 = "stylesIndex.title + ' ' + styles.mmsChartTitle_"
 */
 
 function jsxClassNameToCommon (className) {
@@ -119,13 +120,13 @@ function jsxClassNameToCommon (className) {
     "}": true,
     "'": true,
     '"': true,
-    ']': true
+    ']': true,
+    '+': true
   }
   const SPACE_CHAR = " ";
   let count = 0;
   for(let value of className) {
     if(value === SPACE_CHAR) continue;
-
     if(LEFT_FLAG_MAP[value] || RIGHT_FLAG_MAP[value]) {
       if(count && RIGHT_FLAG_MAP[value]) {
         leftFlag = false;
@@ -133,6 +134,7 @@ function jsxClassNameToCommon (className) {
         count = 0;
       } else if(LEFT_FLAG_MAP[value]) {
         leftFlag = true;
+        count++;
       }
       continue;
     }
