@@ -5,7 +5,7 @@ This is a jsx-to-scss plugin which can help you extract scss from jsx template.
 - 1.Select the JSX you want to extract class names
 - 2.Use Command/Ctrl + E for one click extracting.
 - 3.Paste the SCSS structure to your *.scss file.
-
+![tutorial](./tutorial.gif)
 ## Here is a more specific example
 ##### 1.Copy the JSX element to your clipboard.
 ```

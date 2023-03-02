@@ -2,7 +2,7 @@
   "name": "jsx-to-scss",
   "displayName": "jsx-to-scss",
   "description": "Help you generate scss/less structure from jsx",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "scripts": {
     "dev": "webpack --mode development --watch",
     "start": "webpack --mode development --watch",
